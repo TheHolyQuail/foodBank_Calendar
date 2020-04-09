@@ -338,16 +338,6 @@ module.exports = function(app) {
 
     let error = "";
     console.log("name: " + eventLabel + "/date: " + timeSlot);
-
-    // //check if timeslot is available
-    // let find = await ( Calen.findOne({ time:timeSlot}) )
-    // if(find) {
-    //     //console.log("user already exists")
-    //     success = false;
-    //     error = "That username is unavailable.";
-    // } else {
-    //     success = true;
-    // }
     
     //account creation
     var d = new Calen({name: eventLabel, time: timeSlot, statusColor: "red", available: [], scheduled: []})

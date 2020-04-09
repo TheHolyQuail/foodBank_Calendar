@@ -33,12 +33,41 @@ function parseData(rawData){
   //var calendar = new Calendar('#calendar', dates);
   if(currentRecordMonth != "" && currentRecordYear != ""){
     var data = [
-      { eventName: 'Lunch Meeting w/ Mark', calendar: 'Work', color: 'orange', dateE: 1},
-      { eventName: 'Interview - Jr. Web Developer', calendar: 'Work', color: 'green' ,dateE: 2},
-      { eventName: 'Demo New App to the Board', calendar: 'Work', color: 'orange' ,dateE: 3},
-      { eventName: 'Dinner w/ Marketing', calendar: 'Work', color: 'green' ,dateE: 4},
+      { eventName: 'Lunch Meeting w/ Mark', calendar: 'understaffed', color: 'yellow', dateE: 1},
+      { eventName: 'Interview - Jr. Web Developer', calendar: 'staffed', color: 'green' ,dateE: 2},
+      { eventName: 'Demo New App to the Board', calendar: 'understaffed', color: 'yellow' ,dateE: 3},
+      { eventName: 'Dinner w/ Marketing', calendar: 'staffed', color: 'green' ,dateE: 4},
     ];
-    //console.log(rawData[0].name);
+    
+    //name and color status
+    let newEventName = String(rawData[0].name);
+    let newEventStatus = String(rawData[0].statusColor);
+    
+    //The date
+    let newEventDate = String(rawData[0].time);
+    let newEventYear = newEventDate.slice(0, 4);
+    let newEventMonth = newEventDate.slice(5, 7);
+    let newEventDay = newEventDate.slice(8, 10);
+    
+    let newColor = "";
+    let newSatus = "";
+    if(newEventStatus == "orange"){
+      newColor = "orange";
+      newSatus = "unstaffed";
+    } else if(newEventStatus == "yellow"){
+      newColor = "yellow";
+      newSatus = "understaffed";
+    } else if(newEventStatus == "green"){
+      newColor = "green";
+      newSatus = "staffed";
+    } else {
+      newColor = "blue";
+      newSatus = "error";
+    }
+
+    let newEvent = {eventName: newEventName, calendar: newSatus, color: newColor, dateE: newEventDay}
+    data.push(newEvent);
+
   } else {
     var data = [
       { eventName: 'Lunch Meeting w/ Mark', calendar: 'Work', color: 'orange', dateE: 1},
