@@ -340,20 +340,21 @@ module.exports = function(app) {
     console.log("name: " + eventLabel + "/date: " + timeSlot);
     
     //account creation
-    var d = new Calen({name: eventLabel, time: timeSlot, statusColor: "red", available: [], scheduled: []})
+    var d = new Calen({name: eventLabel, time: timeSlot, statusColor: "orange", available: [], scheduled: []})
         
     d.save(function(err,eventLabel) {
         console.log("Scheduled an event: " + eventLabel + " at: " + timeSlot)
         success = true;
+        res.render("newEvent.ejs", {error: "The event was sucessfully scheduled!"});
     })
 
-    if (success) {
-        //redirect to same page with sucess
-        res.render("newEvent.ejs", {error: "The event was sucessfully scheduled!"});   
-    } else {
-        //failed creation
-        res.render("newEvent.ejs", {error: "Failed to create event."});
-    }
+    // if (success) {
+    //     //redirect to same page with sucess
+    //     res.render("newEvent.ejs", {error: "The event was sucessfully scheduled!"});   
+    // } else {
+    //     //failed creation
+    //     res.render("newEvent.ejs", {error: "Failed to create event."});
+    // }
 });
 
      /////////////

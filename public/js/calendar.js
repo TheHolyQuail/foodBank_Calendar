@@ -38,35 +38,37 @@ function parseData(rawData){
       { eventName: 'Demo New App to the Board', calendar: 'understaffed', color: 'yellow' ,dateE: 3},
       { eventName: 'Dinner w/ Marketing', calendar: 'staffed', color: 'green' ,dateE: 4},
     ];
-    
-    //name and color status
-    let newEventName = String(rawData[0].name);
-    let newEventStatus = String(rawData[0].statusColor);
-    
-    //The date
-    let newEventDate = String(rawData[0].time);
-    let newEventYear = newEventDate.slice(0, 4);
-    let newEventMonth = newEventDate.slice(5, 7);
-    let newEventDay = newEventDate.slice(8, 10);
-    
-    let newColor = "";
-    let newSatus = "";
-    if(newEventStatus == "orange"){
-      newColor = "orange";
-      newSatus = "unstaffed";
-    } else if(newEventStatus == "yellow"){
-      newColor = "yellow";
-      newSatus = "understaffed";
-    } else if(newEventStatus == "green"){
-      newColor = "green";
-      newSatus = "staffed";
-    } else {
-      newColor = "blue";
-      newSatus = "error";
-    }
+    for(let i = 0; i < rawData.length; i++){
+      //name and color status
+      let newEventName = String(rawData[i].name);
+      let newEventStatus = String(rawData[i].statusColor);
+      
+      //The date
+      let newEventDate = String(rawData[i].time);
+      let newEventYear = newEventDate.slice(0, 4);
+      let newEventMonth = newEventDate.slice(5, 7);
+      let newEventDay = newEventDate.slice(8, 10);
+      
+      let newColor = "";
+      let newSatus = "";
+      if(newEventStatus == "orange"){
+        newColor = "orange";
+        newSatus = "unstaffed";
+      } else if(newEventStatus == "yellow"){
+        newColor = "yellow";
+        newSatus = "understaffed";
+      } else if(newEventStatus == "green"){
+        newColor = "green";
+        newSatus = "staffed";
+      } else {
+        newColor = "blue";
+        newSatus = "error";
+      }
 
-    let newEvent = {eventName: newEventName, calendar: newSatus, color: newColor, dateE: newEventDay}
-    data.push(newEvent);
+      let newEvent = {eventName: newEventName, calendar: newSatus, color: newColor, dateE: newEventDay}
+      data.push(newEvent);
+    }
+    
 
   } else {
     var data = [
