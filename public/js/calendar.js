@@ -38,7 +38,7 @@ function parseData(rawData){
       { eventName: 'Demo New App to the Board', calendar: 'Work', color: 'orange' ,dateE: 3},
       { eventName: 'Dinner w/ Marketing', calendar: 'Work', color: 'green' ,dateE: 4},
     ];
-    // console.log(rawData[0].name);
+    //console.log(rawData[0].name);
   } else {
     var data = [
       { eventName: 'Lunch Meeting w/ Mark', calendar: 'Work', color: 'orange', dateE: 1},
