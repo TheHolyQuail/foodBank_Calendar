@@ -14,12 +14,15 @@ module.exports = function(app) {
 /////////////////////////////////////////////////////////////
     app.get('/home', function(req, res) {
         let loged = req.cookies.signedIn;
-        if(loged){
+        String(loged);
+        if(loged == "true"){
             //if there is a user logged in
+            console.log('logged in');
             res.render("home.ejs", {signedIn: true});
+        } else {
+            //default state
+            res.render("home.ejs", {signedIn: false});
         }
-        //default state
-        res.render("home.ejs", {signedIn: false});
     });
 
     app.get('/calendar', function(req, res) {
@@ -67,10 +70,14 @@ module.exports = function(app) {
     app.get('/account', function(req, res) {
         let adm = req.cookies.admin;
         let username = req.cookies.currentUser;
-        if(adm){
+        String(adm);
+        console.log(adm);
+        if(adm == "true"){
+            console.log("admin account");
             res.render("adminAccount.ejs", {name: username});
+        } else {
+            res.render("volunteerAccount.ejs", {name: username});
         }
-        res.render("volunteerAccount.ejs", {name: username}); 
     });
 
     app.get('/editAccount', function(req, res) {
@@ -142,8 +149,8 @@ module.exports = function(app) {
                 
                 //set cookie
                 res.cookie("currentUser", username);
-                console.log("admin: " + user.admin);
                 res.cookie("admin", user.admin);
+                console.log("admin: " + req.cookies.admin);
                 res.cookie("signedIn", true);
 
                 //successfull login

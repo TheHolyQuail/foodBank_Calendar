@@ -4,7 +4,6 @@
     <title>account</title>
     <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
-    <script src="js/functions.js"></script>
     <link rel="stylesheet" href="css/standardStyles.css"/>
   </head>
 <body >
@@ -17,7 +16,7 @@
       <a href ="/logout" action="/logout" method="POST"  class="navButton" id="logOut">log out</a>
       <a href ="/about" class="navButton" id="about">about</a>
   </div>
-  <h1>Hi <% name %></h1>
+  <h1>Hi <%= name %></h1>
   <div id="actions">
     <a href = "/newEvent" class="actionButton" id="scheduleEvent">schedule event</a>
     <a href = "" class="actionButton" id="availability">update availability</a>
