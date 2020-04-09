@@ -30,7 +30,39 @@ function getData() {
 
 function parseData(rawData){
   let dates = [];
-  // var calendar = new Calendar('#calendar', dates);
+  //var calendar = new Calendar('#calendar', dates);
+  if(currentRecordMonth != "" && currentRecordYear != ""){
+    var data = [
+      { eventName: 'Lunch Meeting w/ Mark', calendar: 'Work', color: 'orange', dateE: 1},
+      { eventName: 'Interview - Jr. Web Developer', calendar: 'Work', color: 'green' ,dateE: 2},
+      { eventName: 'Demo New App to the Board', calendar: 'Work', color: 'orange' ,dateE: 3},
+      { eventName: 'Dinner w/ Marketing', calendar: 'Work', color: 'green' ,dateE: 4},
+    ];
+  } else {
+    var data = [
+      { eventName: 'Lunch Meeting w/ Mark', calendar: 'Work', color: 'orange', dateE: 1},
+      { eventName: 'Interview - Jr. Web Developer', calendar: 'Work', color: 'orange' ,dateE: 2},
+      { eventName: 'Demo New App to the Board', calendar: 'Work', color: 'orange' ,dateE: 3},
+      { eventName: 'Dinner w/ Marketing', calendar: 'Work', color: 'orange' ,dateE: 4},
+  
+      { eventName: 'Game vs Portalnd', calendar: 'Sports', color: 'blue' ,dateE: 5},
+      { eventName: 'Game vs Houston', calendar: 'Sports', color: 'blue' ,dateE: 6},
+      { eventName: 'Game vs Denver', calendar: 'Sports', color: 'blue' ,dateE: 7},
+      { eventName: 'Game vs San Degio', calendar: 'Sports', color: 'blue' ,dateE: 8},
+  
+      { eventName: 'School Play', calendar: 'Kids', color: 'yellow' ,dateE: 9},
+      { eventName: 'Parent/Teacher Conference', calendar: 'Kids', color: 'yellow' ,dateE: 10},
+      { eventName: 'Pick up from Soccer Practice', calendar: 'Kids', color: 'yellow' ,dateE: 11},
+      { eventName: 'Ice Cream Night', calendar: 'Kids', color: 'yellow' ,dateE: 12},
+  
+      { eventName: 'Free Tamale Night', calendar: 'Other', color: 'green' ,dateE: 13},
+      { eventName: 'Bowling Team', calendar: 'Other', color: 'green' ,dateE: 14},
+      { eventName: 'Teach Kids to Code', calendar: 'Other', color: 'green' ,dateE: 15},
+      { eventName: 'Startup Weekend', calendar: 'Other', color: 'green' ,dateE: 16}
+    ];
+  }
+  
+  var calendar = new Calendar('#calendar', data);
 }
 
 var currentRecordMonth = "";
@@ -404,38 +436,6 @@ var currentRecordYear = "";
   }
 
   var firstLoad = new Calendar('#nullandvoid', data);
-
-  if(currentRecordMonth != "" && currentRecordYear != ""){
-    var data = [
-      { eventName: 'Lunch Meeting w/ Mark', calendar: 'Work', color: 'orange', dateE: 1},
-      { eventName: 'Interview - Jr. Web Developer', calendar: 'Work', color: 'green' ,dateE: 2},
-      { eventName: 'Demo New App to the Board', calendar: 'Work', color: 'orange' ,dateE: 3},
-      { eventName: 'Dinner w/ Marketing', calendar: 'Work', color: 'green' ,dateE: 4},
-    ];
-  } else {
-    var data = [
-      { eventName: 'Lunch Meeting w/ Mark', calendar: 'Work', color: 'orange', dateE: 1},
-      { eventName: 'Interview - Jr. Web Developer', calendar: 'Work', color: 'orange' ,dateE: 2},
-      { eventName: 'Demo New App to the Board', calendar: 'Work', color: 'orange' ,dateE: 3},
-      { eventName: 'Dinner w/ Marketing', calendar: 'Work', color: 'orange' ,dateE: 4},
-  
-      { eventName: 'Game vs Portalnd', calendar: 'Sports', color: 'blue' ,dateE: 5},
-      { eventName: 'Game vs Houston', calendar: 'Sports', color: 'blue' ,dateE: 6},
-      { eventName: 'Game vs Denver', calendar: 'Sports', color: 'blue' ,dateE: 7},
-      { eventName: 'Game vs San Degio', calendar: 'Sports', color: 'blue' ,dateE: 8},
-  
-      { eventName: 'School Play', calendar: 'Kids', color: 'yellow' ,dateE: 9},
-      { eventName: 'Parent/Teacher Conference', calendar: 'Kids', color: 'yellow' ,dateE: 10},
-      { eventName: 'Pick up from Soccer Practice', calendar: 'Kids', color: 'yellow' ,dateE: 11},
-      { eventName: 'Ice Cream Night', calendar: 'Kids', color: 'yellow' ,dateE: 12},
-  
-      { eventName: 'Free Tamale Night', calendar: 'Other', color: 'green' ,dateE: 13},
-      { eventName: 'Bowling Team', calendar: 'Other', color: 'green' ,dateE: 14},
-      { eventName: 'Teach Kids to Code', calendar: 'Other', color: 'green' ,dateE: 15},
-      { eventName: 'Startup Weekend', calendar: 'Other', color: 'green' ,dateE: 16}
-    ];
-  }
-  
-  var calendar = new Calendar('#calendar', data);
-
 }();
+
+getData();

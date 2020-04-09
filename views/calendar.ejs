@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/calendarCSS.css" />
     <!-- <script src="js/functions.js"></script> -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <style>
 /*rows and colums*/
 .RowABC {
@@ -55,7 +56,7 @@
 }
     </style>
   </head>
-  <body onload="getData()">
+  <body>
     <div class="RowABC">
       <div class="ColumnABCA">
         <div>
@@ -63,6 +64,7 @@
           <a href="/new" class="RowABC navButton">new account</a>
           <a href="/about" class="RowABC navButton">about</a>
           <a href="/contact" class="RowABC navButton">contact</a>
+          <button onclick="getData()">show calendar</button>
         </div>
 
       </div>
