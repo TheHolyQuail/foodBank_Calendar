@@ -1,0 +1,139 @@
+/* /// scrollover text /// */
+/* Tooltip container */
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+  }
+  
+  /* Tooltip text */
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+   
+    /* Position the tooltip text */
+    position: absolute;
+    z-index: 1;
+    top: -4px;
+    left: 105%;
+  }
+  
+  /* Show the tooltip text when you mouse over the tooltip container */
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+  }
+
+/* /// page styling /// */
+
+body {
+  background-color: #ffffff;
+}
+
+ul {
+  list-style-type:none;
+}
+
+/* Lables the page */
+#top {
+
+}
+
+/* navigation buttons */
+#nav_bar {
+  background-color: #5074f5;
+  border: 1px solid black;
+  padding-top: 1%;
+  padding-right: .5%;
+  padding-bottom: 1%;
+  padding-left: 3%;
+}
+
+/* navigation box */
+.navButton {
+  margin: 10px;
+  border-radius: 10px;
+  padding: .5%;
+  background: #f0eeef;
+  /* box-shadow: 20px 20px 60px #cccacb; */
+  /* box-shadow: 20px 20px 60px #cccacb, -20px -20px 60px #ffffff; */
+  cursor: pointer;
+  transition: all 0.15s linear;
+  color: #222942;
+}
+
+/* navigation button when mouse is hovering over it */
+.navButton:hover {
+  box-shadow: inset 1px 2px 8px #b8b7b8, inset -3px -4px 8px #ffffff;
+  /* box-shadow: inset 1px 2px 8px #cccacb, inset -3px -4px 8px #ffffff; */
+  color: #2963ab;
+}
+
+/* navigation button of the current window */
+.active, .navbutton {
+  color: #556187;
+}
+
+/* forms box */
+.centerQuestionare {
+  background-color: #5074f5;
+  border: 1px solid black;
+  padding-top: 1%;
+  padding-right: .5%;
+  padding-bottom: 1%;
+  padding-left: 3%;
+}
+
+/* submit button in forms */
+.submitButton{
+  margin: 10px;
+  border-radius: 10px;
+  padding: .5%;
+  background: #f0eeef;
+  /* box-shadow: 20px 20px 60px #cccacb; */
+  /* box-shadow: 20px 20px 60px #cccacb, -20px -20px 60px #ffffff; */
+  cursor: pointer;
+  transition: all 0.15s linear;
+  color: #222942;
+}
+
+/* submit button when mouse is hovering over it */
+.submitButton:hover {
+  box-shadow: inset 1px 2px 8px #b8b7b8, inset -3px -4px 8px #ffffff;
+  /* box-shadow: inset 1px 2px 8px #cccacb, inset -3px -4px 8px #ffffff; */
+  color: #2963ab;
+}
+
+/* action box */
+#actions {
+  background-color: #5074f5;
+  border: 1px solid black;
+  padding-top: 1%;
+  padding-right: .5%;
+  padding-bottom: 1%;
+  padding-left: 3%;
+}
+
+/* action button in forms */
+.actionButton{
+  margin: 10px;
+  border-radius: 10px;
+  padding: .5%;
+  background: #f0eeef;
+  /* box-shadow: 20px 20px 60px #cccacb; */
+  /* box-shadow: 20px 20px 60px #cccacb, -20px -20px 60px #ffffff; */
+  cursor: pointer;
+  transition: all 0.15s linear;
+  color: #222942;
+}
+
+/* action button when mouse is hovering over it */
+.actionButton:hover {
+  box-shadow: inset 1px 2px 8px #b8b7b8, inset -3px -4px 8px #ffffff;
+  /* box-shadow: inset 1px 2px 8px #cccacb, inset -3px -4px 8px #ffffff; */
+  color: #2963ab;
+}

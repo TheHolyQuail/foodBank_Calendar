@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <script src="js/functions.js"></script>
+    <link rel="stylesheet" href="css/standardStyles.css" />
+  </head>
+  <body>
+    <div id="nav_bar">
+      <a href="home" class="navButton" id="home">back</a>
+    </div>
+    <h1>Hi!</h1>
+    <div class="centerQuestionare">
+      <form action="/new" method="POST">
+        <input type="text" id="user" class="entry" name="username" placeholder="username">
+        <input type="text" id="pass" class="entry" name="password1" placeholder="password">
+        <input type="text" id="pass" class="entry" name="password2" placeholder="retype password">
+        <input type="text" id="email" class="entry" name="email" placeholder="email@email.email">
+        <input type="text" id="phone" class="entry" name="phone" placeholder="###-###-####">
+        <div class="tooltip">
+          <input type="text" id="adm" class="entry" name="admin" placeholder="admin?">
+          <span class="tooltiptext">only fill out if you are an admin</span>
+        </div>
+        <input type="submit" class="submitButton" value="Create Account">
+      </form>
+      <div id="errorMessage">
+        <h5><%= error %></h5>
+      </div>
+    </div>
+  </body>
+</html>

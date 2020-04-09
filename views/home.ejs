@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>home</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <!-- <script src="js/functions.js"></script> -->
+    <link rel="stylesheet" href="css/standardStyles.css"/>
+  </head>
+  <body>
+    <div id="top">
+      <h1>home</h1>
+    </div>
+    <div id="nav_bar">
+      <a href ="/home" class="navButton active" id="home">home</a>
+      <a href ="/calendar" class="navButton" id="calendar">calendar</a>
+      <% if(signedIn) { %>
+        <a href ="/account" class="navButton" id="account">account</a> <!-- is hidden if user is signed out -->
+        <a href ="/logout" action="/logout" method="POST" class="navButton" id="logOut">log out</a> <!-- is hidden if user is signed out -->
+      <% } %>
+      <% if(!signedIn) { %>
+        <a href ="/login" class="navButton" id="logIn">sign in</a> <!-- is hidden if user is signed in -->
+        <a href ="/new" class="navButton" id="newAccount">new account</a> <!-- is hidden if user is signed in -->
+      <% } %>
+      <a href ="/about" class="navButton" id="about">about</a>
+    </div>
+
+    <!-- https://www.w3schools.com/w3css/tryit.asp?filename=tryw3css_templates_dark_portfolio&stacked=h
+    https://mdbootstrap.com/plugins/jquery/full-calendar/ -->
+  </body>
+</html>

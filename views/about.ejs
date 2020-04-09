@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>about</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <script src="functions.js"></script>
+    <link rel="stylesheet" href="css/standardStyles.css"/>
+  </head>
+  <body>
+    <div id="top">
+      <h1>about</h1>
+    </div>
+    <div id="nav_bar">
+      <a href ="/home" class="navButton" id="home">home</a>
+      <a href ="/calendar" class="navButton" id="calendar">calendar</a>
+      <% if(signedIn) { %>
+        <a href ="/account" class="navButton in" id="account">account</a> <!-- is hidden if user is signed out -->
+        <a href ="/logout" action="/logout" method="POST" class="navButton in" id="logOut">log out</a> <!-- is hidden if user is signed out -->
+      <% } %>
+      <% if(!signedIn) { %>
+        <a href ="/login" class="navButton out" id="logIn">sign in</a> <!-- is hidden if user is signed in -->
+        <a href ="/new" class="navButton out" id="newAccount">new account</a> <!-- is hidden if user is signed in -->
+      <% } %>
+      <a href ="/about" class="navButton  active" id="about">about</a>
+    </div>
+    <div>
+        <p>this project was created by a high school IB computer science student</p>
+        <p><º)))><¸.·´¯`·.¸¸.·´¯`·.¸¸.·´¯`·.¸¸.·´¯`·.¸¸.·´¯`·.¸¸.·´¯`·.¸¸.·´¯`·.¸¸.·´¯`·.¸¸.·´¯`·.¸><(((º></p>
+    </div>
+  </body>
+</html>

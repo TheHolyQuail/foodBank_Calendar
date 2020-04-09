@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>calendar test</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/calendarCSS.css" />
+    <!-- <script src="js/functions.js"></script> -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js"></script>
+    <style>
+/*rows and colums*/
+.RowABC {
+    display: table;
+    table-layout: fixed;
+    border-spacing: 1%;
+}
+.ColumnABCA {
+    display: table-cell;
+    background-color: #ffffff;
+    width: 5%;
+    padding-top: 1%;
+    padding-right: 1%;
+    padding-bottom: 2%;
+    padding-left: 5%;
+}
+
+.ColumnABCB {
+    display: table-cell;
+    background-color: dark grey;
+    width: 5%;
+    padding-top: 1%;
+    padding-right: 1%;
+    padding-bottom: 2%;
+    padding-left: 1%;
+}
+
+/* navigation box */
+.navButton {
+  margin: 10px;
+  border-radius: 10px;
+  padding: .5%;
+  background: #f0eeef;
+  /* box-shadow: 20px 20px 60px #cccacb; */
+  /* box-shadow: 20px 20px 60px #cccacb, -20px -20px 60px #ffffff; */
+  cursor: pointer;
+  transition: all 0.15s linear;
+  color: #222942;
+}
+
+/* navigation button when mouse is hovering over it */
+.navButton:hover {
+  box-shadow: inset 1px 2px 8px #b8b7b8, inset -3px -4px 8px #ffffff;
+  /* box-shadow: inset 1px 2px 8px #cccacb, inset -3px -4px 8px #ffffff; */
+  color: #2963ab;
+}
+    </style>
+  </head>
+  <body onload="getData()">
+    <div class="RowABC">
+      <div class="ColumnABCA">
+        <div>
+          <a href="/home" class="RowABC navButton">home</a>
+          <a href="/new" class="RowABC navButton">new account</a>
+          <a href="/about" class="RowABC navButton">about</a>
+          <a href="/contact" class="RowABC navButton">contact</a>
+        </div>
+
+      </div>
+      <div class="ColumnABCB">
+        <div id="calendar"></div>
+        <div id="nullandvoid" style="visibility: hidden;"></div>
+      </div>
+      
+    </div>
+    
+    <!-- https://codepen.io/peanav/pen/ulkof -->
+    <script src="js/calendar.js" type="module"></script>
+  </body>
+</html>
+
+  <!-- //the function calls your route and the passes off to another function
+  function myFunc() {
+  
+  $.ajax{.   //   docs on ajax - you have jQuery loaded, right?
+  
+     url: "http://localhost:3000/myRouteName",
+     success: anotherMethodToRun 
+  
+  }
+  
+  }
+  
+  function anotherMethodToRun(data) {
+  
+    console.log(data);
+    // you've got the data in your page now
+  
+  }
+  
+  
+  //meanwhile in routes.js on the server side
+  
+    app.get('/nyRouteName', function(req,res) {
+        Data.find({}, stuff).........
+        res.send(stuff).    // send just sends some data, doesn't render a ejs page
+    }) 
+  -->

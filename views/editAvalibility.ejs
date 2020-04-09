@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>manage account</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <script src="functions.js"></script>
+    <link rel="stylesheet" href="css/standardStyles.css"/>
+  </head>
+  <body>
+    <div id="nav_bar">
+      <a href="/home" class="navButton" id="home">back</a>
+    </div>
+
+    <div id="centerQuestionare">
+      <h1>Welcome</h1>
+      
+      <ul class="nav navbar-nav">
+        <li><a href="/home">Home</a></li>
+        <li>
+          <form action="/login" method="POST">
+            <input type="text" id="day" class="entry" name="day" placeholder="DD/MM/YYYY">
+            <input type="text" id="time" class="entry" name="time" placeholder="0:00/0:00">
+            <p>repeat every:</p>
+            <input type="ckeckbox" id="user" class="entry" name="dayOWeek" placeholder="">
+            <input type="submit" class="submitButton" value="make changes">
+          </form>
+        </li>
+        <li><a class="button" href ="/home">cancel</a></li>
+        <li> <p class="error"><%= error%></p></li>
+      </ul>
+    </div>
+    <!-- user signs in and a cookie is created which keeps them signed in 
+        and ensures the home page displays the correct account type and personal info-->
+  </body>
+</html>
