@@ -12,20 +12,17 @@
     </div>
 
     <div id="centerQuestionare">
-      <h1>Welcome</h1>
+      <h1>Got time to volunteer?</h1>
       
       <ul class="nav navbar-nav">
-        <li><a href="/home">Home</a></li>
         <li>
-          <form action="/login" method="POST">
-            <input type="text" id="day" class="entry" name="day" placeholder="DD/MM/YYYY">
-            <input type="text" id="time" class="entry" name="time" placeholder="0:00/0:00">
-            <p>repeat every:</p>
-            <input type="ckeckbox" id="user" class="entry" name="dayOWeek" placeholder="">
+          <form action="/editAvalibility" method="POST">
+            <input type="text" id="day" class="entry" name="day" placeholder="MONDAY">
+            <input type="text" id="time" class="entry" name="time" placeholder="0:00AM/0:00PM">
             <input type="submit" class="submitButton" value="make changes">
           </form>
         </li>
-        <li><a class="button" href ="/home">cancel</a></li>
+        <li><a class="navButton" href ="/home">cancel</a></li>
         <li> <p class="error"><%= error%></p></li>
       </ul>
     </div>

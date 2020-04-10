@@ -182,7 +182,7 @@ module.exports = function(app) {
         console.log(user + "/" + pass1 + "/" + pass2);
 
         //check if username is available
-        let find = await ( User.findOne({ username:user }) )
+        let find = await ( User.findOne({ name:user }) )
         if(find) {
             //console.log("user already exists")
             success = false;
@@ -218,6 +218,31 @@ module.exports = function(app) {
             //failed login
             res.render("new.ejs", {error: error});
         }
+    });
+
+     //////////////////////
+    ///edit avalibility///
+   //////////////////////
+    app.post("/editAvalibility", async function(req,res) {
+        let day = String(req.body.day);
+        let timeslot = String(req.body.time);
+        let username = req.cookies.currentUser;
+
+        //convert day to three digits
+        day = day.slice(0, 3);
+
+        //find user and add new availibility
+        // let find = await ( User.findOne({ name:user }) )
+        User.findOne({name:username}, function(err,user) {
+            console.log("user found");
+            let dayTime = day + "/" + timeslot;
+            user.avaiability.push(dayTime);
+            console.log("user updated");
+            //(node:31912) UnhandledPromiseRejectionWarning: ReferenceError: user is not defined
+            user.save(function(err,user){res.render('editAvalibility.ejs',{error: ""})})
+            console.log("finished");
+        });
+        
     });
 
      //////////////////

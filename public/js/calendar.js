@@ -38,6 +38,7 @@ function parseData(rawData){
       { eventName: 'Demo New App to the Board', calendar: 'understaffed', color: 'yellow' ,dateE: 3},
       { eventName: 'Dinner w/ Marketing', calendar: 'staffed', color: 'green' ,dateE: 4},
     ];
+
     for(let i = 0; i < rawData.length; i++){
       //name and color status
       let newEventName = String(rawData[i].name);
@@ -48,49 +49,36 @@ function parseData(rawData){
       let newEventYear = newEventDate.slice(0, 4);
       let newEventMonth = newEventDate.slice(5, 7);
       let newEventDay = newEventDate.slice(8, 10);
+      let newEventTime = newEventDate.slice(11, 20);
       
-      let newColor = "";
-      let newSatus = "";
-      if(newEventStatus == "orange"){
-        newColor = "orange";
-        newSatus = "unstaffed";
-      } else if(newEventStatus == "yellow"){
-        newColor = "yellow";
-        newSatus = "understaffed";
-      } else if(newEventStatus == "green"){
-        newColor = "green";
-        newSatus = "staffed";
-      } else {
-        newColor = "blue";
-        newSatus = "error";
+      //check if the event is in the current active month of the calendar
+      if(String(currentRecordMonth) == newEventMonth && String(currentRecordYear) == newEventYear){
+
+        //color
+        let newColor = "";
+        let newSatus = "";
+        if(newEventStatus == "orange"){
+          newColor = "orange";
+          newSatus = "unstaffed";
+        } else if(newEventStatus == "yellow"){
+          newColor = "yellow";
+          newSatus = "understaffed";
+        } else if(newEventStatus == "green"){
+          newColor = "green";
+          newSatus = "staffed";
+        } else {
+          newColor = "blue";
+          newSatus = "error";
+        }
+
+        let newEvent = {eventName: newEventName + " at " + newEventTime, calendar: newSatus, color: newColor, dateE: newEventDay}
+        data.push(newEvent);
       }
-
-      let newEvent = {eventName: newEventName, calendar: newSatus, color: newColor, dateE: newEventDay}
-      data.push(newEvent);
-    }
-    
-
+    } 
   } else {
+    //If there is no selected month
     var data = [
-      { eventName: 'Lunch Meeting w/ Mark', calendar: 'Work', color: 'orange', dateE: 1},
-      { eventName: 'Interview - Jr. Web Developer', calendar: 'Work', color: 'orange' ,dateE: 2},
-      { eventName: 'Demo New App to the Board', calendar: 'Work', color: 'orange' ,dateE: 3},
-      { eventName: 'Dinner w/ Marketing', calendar: 'Work', color: 'orange' ,dateE: 4},
-  
-      { eventName: 'Game vs Portalnd', calendar: 'Sports', color: 'blue' ,dateE: 5},
-      { eventName: 'Game vs Houston', calendar: 'Sports', color: 'blue' ,dateE: 6},
-      { eventName: 'Game vs Denver', calendar: 'Sports', color: 'blue' ,dateE: 7},
-      { eventName: 'Game vs San Degio', calendar: 'Sports', color: 'blue' ,dateE: 8},
-  
-      { eventName: 'School Play', calendar: 'Kids', color: 'yellow' ,dateE: 9},
-      { eventName: 'Parent/Teacher Conference', calendar: 'Kids', color: 'yellow' ,dateE: 10},
-      { eventName: 'Pick up from Soccer Practice', calendar: 'Kids', color: 'yellow' ,dateE: 11},
-      { eventName: 'Ice Cream Night', calendar: 'Kids', color: 'yellow' ,dateE: 12},
-  
-      { eventName: 'Free Tamale Night', calendar: 'Other', color: 'green' ,dateE: 13},
-      { eventName: 'Bowling Team', calendar: 'Other', color: 'green' ,dateE: 14},
-      { eventName: 'Teach Kids to Code', calendar: 'Other', color: 'green' ,dateE: 15},
-      { eventName: 'Startup Weekend', calendar: 'Other', color: 'green' ,dateE: 16}
+      { eventName: 'no data', calendar: 'Error no data', color: 'blue', dateE: 1}
     ];
   }
   
