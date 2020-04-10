@@ -17,8 +17,14 @@
       <ul class="nav navbar-nav">
         <li>
           <form action="/editAvalibility" method="POST">
-            <input type="text" id="day" class="entry" name="day" placeholder="MONDAY">
-            <input type="text" id="time" class="entry" name="time" placeholder="0:00AM/0:00PM">
+            <div class="tooltip">
+              <input type="text" id="day" class="entry" name="day" placeholder="MONDAY">
+              <span class="tooltiptext">Please enter day of the week.</span>
+            </div>
+            <div class="tooltip">
+              <input type="text" id="time" class="entry" name="time" placeholder="0:00AM/0:00PM">
+              <span class="tooltiptext">Please fill out in this format: 0:00AM/0:00PM</span>
+            </div>
             <input type="submit" class="submitButton" value="make changes">
           </form>
         </li>
