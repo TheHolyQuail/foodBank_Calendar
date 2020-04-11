@@ -100,6 +100,33 @@ module.exports = function(app) {
         }
     });
 
+    app.get('/myShifts', function(req, res){
+        res.render("myShifts.ejs");
+    });
+
+    app.get('/getUser', function(req, res) {
+        let username = req.cookies.currentUser;
+        //console.log("username: " + username);
+        User.findOne({ name:username }, function(err,foundUser){
+            //console.log("user" + foundUser);
+            res.send(foundUser.scheduled);
+        })
+    });
+
+    // app.get('/getUser', function(req, res) {
+    //     let username = req.cookies.currentUser;
+    //     //console.log(username);
+    //     res.send(username);
+    // });
+
+    // app.get('/getUserEvents', function(req, res) {
+    //     let user = String(req.body.username);
+    //     User.findOne({ name:user }, function(err,foundUser){
+    //         console.log(foundUser);
+    //         res.send(foundUser.scheduled);
+    //     })
+    // });
+
     app.get('/editAccount', function(req, res) {
         //declare variables
         let username = req.cookies.currentUser;
