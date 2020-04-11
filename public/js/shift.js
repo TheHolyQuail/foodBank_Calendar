@@ -155,6 +155,7 @@ function parseDataB(rawData){
                     dat.name = "userDisplay";
                     dat.type = "text";
                     dat.class = "fullHide";
+                    dat.setAttribute("hidden", true);
                     
                     form.appendChild(dat);
                     form.appendChild(input);
