@@ -38,19 +38,19 @@ module.exports = function(app) {
     });
 
     app.get('/assignShift', function(req, res) {
-        res.render("assignShift.ejs");
+        res.render("assignShift.ejs", {error: ""});
     });
 
     app.get('/assignShiftPhaseA', function(req, res) {
         Calen.find({}, function(err,events) {
-            console.log(events);
+            //console.log(events);
             res.send(events);
         })
     });
 
     app.get('/assignShiftPhaseB', function(req, res) {
         User.find({}, function(err,users) {
-            console.log(users);
+            //console.log(users);
             // res.render("calendar.ejs",{eventCallResults:events})
             res.send(users);
         })
@@ -91,9 +91,9 @@ module.exports = function(app) {
         let adm = req.cookies.admin;
         let username = req.cookies.currentUser;
         String(adm);
-        console.log(adm);
+        //console.log(adm);
         if(adm == "true"){
-            console.log("admin account");
+            //console.log("admin account");
             res.render("adminAccount.ejs", {name: username});
         } else {
             res.render("volunteerAccount.ejs", {name: username});
@@ -130,7 +130,7 @@ module.exports = function(app) {
 
 //a post, this handles anything sent TO the url at localhost:3000/post
     app.post('/post', function(req, res) {
-        console.log(req.body.name); 
+        //console.log(req.body.name); 
         res.send("you posted:" + req.body.name);
     });
 
@@ -170,11 +170,11 @@ module.exports = function(app) {
                 //set cookie
                 res.cookie("currentUser", username);
                 res.cookie("admin", user.admin);
-                console.log("admin: " + req.cookies.admin);
+                //console.log("admin: " + req.cookies.admin);
                 res.cookie("signedIn", true);
 
                 //successfull login
-                console.log("success");
+                //console.log("success");
 
                 //redirect to game
                 res.render("home.ejs", {signedIn: true, admin: user.admin});   
@@ -199,7 +199,7 @@ module.exports = function(app) {
         let success = false;
 
         let error = "";
-        console.log(user + "/" + pass1 + "/" + pass2);
+        //console.log(user + "/" + pass1 + "/" + pass2);
 
         //check if username is available
         let find = await ( User.findOne({ name:user }) )
@@ -222,7 +222,7 @@ module.exports = function(app) {
 
         if(success){
             //account creation
-            console.log("account created: " + user + "/" + pass1);
+            //console.log("account created: " + user + "/" + pass1);
             if(admin == "admin"){
                 var u = new User({name:user, password:pass1, phone:phone, email:email, admin:true})
             }else{
@@ -254,13 +254,13 @@ module.exports = function(app) {
         //find user and add new availibility
         // let find = await ( User.findOne({ name:user }) )
         User.findOne({name:username}, function(err,user) {
-            console.log("user found");
+            //console.log("user found");
             let dayTime = day + "/" + timeslot;
             user.avaiability.push(dayTime);
-            console.log("user updated");
+            //console.log("user updated");
             //(node:31912) UnhandledPromiseRejectionWarning: ReferenceError: user is not defined
             user.save(function(err,user){res.render('editAvalibility.ejs',{error: ""})})
-            console.log("finished");
+            //console.log("finished");
         });
         
     });
@@ -382,7 +382,7 @@ module.exports = function(app) {
     let success = false;
 
     let error = "";
-    console.log("name: " + eventLabel + "/date: " + timeSlot);
+    //console.log("name: " + eventLabel + "/date: " + timeSlot);
     
     //account creation
     var d = new Calen({name: eventLabel, time: timeSlot, statusColor: "orange", available: [], scheduled: []})
@@ -411,11 +411,68 @@ module.exports = function(app) {
         res.cookie("signedIn", false);
    })
 
-     /////////////////
-    ///sort events///
-   /////////////////
-   app.post("/calendarSort", async function(req,res) {
-    //sorts the list of events so they go from soonest to latest
+     //////////////////
+    ///assign shift///
+   //////////////////
+   app.post("/assignShift", async function(req,res) {
+        let username = String(req.body.userDisplay);
+        //console.log(username);
+        //the variable containing the placement of the event in a sorted list of all events
+        let event = String(req.body.userDisplay.name);
+        //find the cutoff marker
+        let cutoff = 0;
+        for(let i = 0; i < event.length; i++){
+            if(event[i] == "@"){
+                cutoff = i;
+            }
+        }
+        //cut event down to just the number refering to it's placement in a sorted list of all events.
+        event = event.slice(cutoff + 1, event.length);
+        console.log("event: " + event);
+        username = username.slice(0, cutoff);
+
+        Calen.find({}, function(err,eventList) {
+            ////sort the events
+            var events = eventList;
+            //console.log(events);
+            //bubble sort
+            for(let ii = 0; ii < events.length - 1; ii += 1) {
+                //set new a and b
+                let a = events[ii];
+                let b = events[ii + 1];
+                //turn dates into numbersS
+                let aDate = a.time.slice(0,4) + a.time.slice(5,7) + a.time.slice(8,10);
+                let bDate = b.time.slice(0,4) + b.time.slice(5,7) + b.time.slice(8,10);
+                //switch if necessary
+                if(aDate > bDate){
+                    events[ii] = b;
+                    events[ii  + 1] = a;
+                }
+            }
+
+            ////update the user
+            var usersEvent = events[event];
+
+            Calen.findOne({name:usersEvent.name}, function(err,volunteerEvent){
+                //update event color
+                if(volunteerEvent.statusColor == "orange"){
+                    volunteerEvent.statusColor = "yellow";
+                } else {
+                    volunteerEvent.statusColor = "green";
+                }
+                volunteerEvent.save();
+            })
+
+            //find the user
+            User.findOne({name:username}, function(err,user) {
+                console.log("user found");
+                user.scheduled.push(usersEvent);
+                console.log("user updated");
+                user.save(function(err,user){res.render("/assignShift", {error: ""})});
+                console.log("finished");
+            });
+        });
+        
    })
 
 }

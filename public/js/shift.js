@@ -8,14 +8,14 @@
         </tr>
     }                       
 </table>   */
-
+var fullEventCount;
 
 //sorts the events and puts them on the page
 function getDataA() { 
     $.ajax({
       url: "http://localhost:3333/assignShiftPhaseA",
       success: function(data){
-        console.log(data);
+        //console.log(data);
         parseDataA(data);
       },
       error: function(response) {
@@ -91,7 +91,7 @@ function parseDataA(rawData){
         Available.class = dateTime;
         //id is the order in the list that the item is
         Available.id = i;
-        Available.innerHTML = Available.id;
+        //Available.innerHTML = Available.id;
 
         //add headers to the row
         shell.appendChild(Event);
@@ -101,15 +101,16 @@ function parseDataA(rawData){
         //set main parent element and add headers to it
         element.appendChild(shell);
     }
-    //getDataB(events.length);
+    fullEventCount = events.length;
+    getDataB();
 }
 
 //sorts the available users and puts them on the page
-function getDataB(len) { 
+function getDataB() { 
     $.ajax({
-      url: "http://localhost:3333/assignShiftPhaseA",
-      success: function(data, len){
-        console.log(data);
+      url: "http://localhost:3333/assignShiftPhaseB",
+      success: function(data){
+        //console.log(data);
         parseDataB(data);
       },
       error: function(response) {
@@ -119,19 +120,50 @@ function getDataB(len) {
     });
 }
   
-function parseDataB(rawData, x){
+function parseDataB(rawData){
     var users = rawData;
-
+    var x = fullEventCount;
+    //console.log(users);
     //iterates though every event and assigns 
     for(let i = 0; i < x; i++){
-        let date = String(document.getElementById(i).className);
+        let date = String(document.getElementById(i).class);
         //the date of the event yyyy/mm/dd
         let day = date.slice(0,4) + date.slice(5,7) + date.slice(8,10);
         //the timeframe of the event 00:00AM/00:00PM
         let hours = date.slice(11,date.length);
+        console.log(date);
         //iterates through every user and add available ones to the list for that event
         for(let ii = 0; ii < users.length; ii++){
-            //
+            for(let iii = 0; iii < users[ii].avaiability.length; iii++){
+                console.log(date.slice(0,10));
+                if(date.slice(0,10) == users[ii].avaiability[iii].slice(0,10)){
+                    console.log(i);
+        //             <form action="/assignShift" method="POST">
+        //                  <input type="submit" class="submitButton" value="name">
+        //              </form>
+                    //create form with the submit button as the only internal element
+                    let form = document.createElement("form");
+                    form.action = "/assignShift";
+                    form.method = "POST";
+                    let input = document.createElement("input");
+                    input.value = users[ii].name;
+                    input.name = users[ii].name + "@" + i;
+                    input.type = "submit";
+                    input.class = "submitButton";//change to assignButton if possible
+                    let dat = document.createElement("input");
+                    dat.value = users[ii].name + "@" + i;
+                    dat.name = "userDisplay";
+                    dat.type = "text";
+                    dat.class = "fullHide";
+                    
+                    form.appendChild(dat);
+                    form.appendChild(input);
+                    document.getElementById(i).appendChild(form);
+                }
+            }
+            
+            //set main parent element and add headers to it
+            //element.appendChild(shell);
         }
     }
 }

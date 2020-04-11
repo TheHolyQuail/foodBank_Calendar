@@ -161,3 +161,23 @@ th{
   /* box-shadow: inset 1px 2px 8px #cccacb, inset -3px -4px 8px #ffffff; */
   color: #2963ab;
 }
+
+/* action button in forms */
+.assignButton{
+  margin: 10px;
+  border-radius: 10px;
+  padding: .5%;
+  background: #f0eeef;
+  /* box-shadow: 20px 20px 60px #cccacb; */
+  /* box-shadow: 20px 20px 60px #cccacb, -20px -20px 60px #ffffff; */
+  cursor: pointer;
+  /* transition: all 0.15s linear; */
+  color: #222942;
+}
+
+/* action button when mouse is hovering over it */
+.assignButton:hover {
+  box-shadow: inset 1px 2px 8px #b8b7b8, inset -3px -4px 8px #ffffff;
+  /* box-shadow: inset 1px 2px 8px #cccacb, inset -3px -4px 8px #ffffff; */
+  color: #2963ab;
+}
