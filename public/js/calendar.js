@@ -18,7 +18,7 @@ function getData() {
   $.ajax({
     url: "http://localhost:3333/calendarData",
     success: function(data){
-      console.log(data);
+      //console.log(data);
       parseData(data);
     },
     error: function(response) {
@@ -141,7 +141,7 @@ var currentRecordYear = "";
     this.title.innerHTML = this.current.format('MMMM YYYY');
     currentRecordMonth = this.current.format('MMMM');
     currentRecordYear = this.current.format('YYYY');
-    console.log(currentRecordMonth);
+    //console.log(currentRecordMonth);
   }
 
   Calendar.prototype.drawMonth = function() {
@@ -152,7 +152,7 @@ var currentRecordYear = "";
     this.events.forEach(function(ev) {
       //ev.date = self.current.clone().date(Math.random() * (29 - 1) + 1);
       // ev.date = self.current.clone().date(data[xyz].dateE);
-      console.log(ev.dateE);
+      //console.log(ev.dateE);
       ev.date = self.current.clone().date(ev.dateE);
     });
     

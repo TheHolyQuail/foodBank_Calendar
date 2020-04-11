@@ -28,6 +28,20 @@ function getDataA() {
 function parseDataA(rawData){
     ////sort events into order
     var events = rawData;
+    //bubble sort
+    for(let ii = 0; ii < events.length - 1; ii += 1) {
+        //set new a and b
+        let a = events[ii];
+        let b = events[ii + 1];
+        //turn dates into numbersS
+        let aDate = a.time.slice(0,4) + a.time.slice(5,7) + a.time.slice(8,10);
+        let bDate = b.time.slice(0,4) + b.time.slice(5,7) + b.time.slice(8,10);
+        //switch if necessary
+        if(aDate > bDate){
+            events[ii] = b;
+            events[ii  + 1] = a;
+        }
+    }
 
     ////create table headers
     //create first table row
@@ -55,17 +69,30 @@ function parseDataA(rawData){
         ///let node = document.createTextNode("This is new.");
         ///para.appendChild(node);
 
+        //name and color status
+        let eventName = String(events[i].name);
+        let eventStatus = String(events[i].statusColor);//for determining if the event needs volunteers
+        //The date
+        let dateTime = String(rawData[i].time);
+        let eventDate = dateTime.slice(0, 10);
+        let eventTime = dateTime.slice(11, dateTime.length);
+        
         //create row
         let shell = document.createElement("tr");
         //create column elements
         let Event = document.createElement("td");
-        Event.innerHTML = "Event";
+        Event.innerHTML = eventName;
         let Date = document.createElement("td");
-        Date.innerHTML = "Date";
+        Date.innerHTML = eventDate;
         let Time = document.createElement("td");
-        Time.innerHTML = "Time";
+        Time.innerHTML = eventTime;
         let Available = document.createElement("td");
-        Available.innerHTML = "Available Volunteers";
+        //class is the date and time of the event
+        Available.class = dateTime;
+        //id is the order in the list that the item is
+        Available.id = i;
+        Available.innerHTML = Available.id;
+
         //add headers to the row
         shell.appendChild(Event);
         shell.appendChild(Date);
@@ -74,13 +101,14 @@ function parseDataA(rawData){
         //set main parent element and add headers to it
         element.appendChild(shell);
     }
+    //getDataB(events.length);
 }
 
 //sorts the available users and puts them on the page
-function getDataB() { 
+function getDataB(len) { 
     $.ajax({
       url: "http://localhost:3333/assignShiftPhaseA",
-      success: function(data){
+      success: function(data, len){
         console.log(data);
         parseDataB(data);
       },
@@ -91,8 +119,21 @@ function getDataB() {
     });
 }
   
-function parseDataB(rawData){
-    
+function parseDataB(rawData, x){
+    var users = rawData;
+
+    //iterates though every event and assigns 
+    for(let i = 0; i < x; i++){
+        let date = String(document.getElementById(i).className);
+        //the date of the event yyyy/mm/dd
+        let day = date.slice(0,4) + date.slice(5,7) + date.slice(8,10);
+        //the timeframe of the event 00:00AM/00:00PM
+        let hours = date.slice(11,date.length);
+        //iterates through every user and add available ones to the list for that event
+        for(let ii = 0; ii < users.length; ii++){
+            //
+        }
+    }
 }
 
 //Starts the get data process once the JS file has loaded
