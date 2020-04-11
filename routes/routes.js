@@ -17,7 +17,7 @@ module.exports = function(app) {
         String(loged);
         if(loged == "true"){
             //if there is a user logged in
-            console.log('logged in');
+            //console.log('logged in');
             res.render("home.ejs", {signedIn: true});
         } else {
             //default state
@@ -31,11 +31,31 @@ module.exports = function(app) {
 
     app.get('/calendarData', function(req, res) {
         Calen.find({}, function(err,events) {
-            console.log(events);
+            //console.log(events);
             // res.render("calendar.ejs",{eventCallResults:events})
             res.send(events);
         })
     });
+
+    app.get('/assignShift', function(req, res) {
+        res.render("assignShift.ejs");
+    });
+
+    app.get('/assignShiftPhaseA', function(req, res) {
+        Calen.find({}, function(err,events) {
+            console.log(events);
+            res.send(events);
+        })
+    });
+
+    app.get('/assignShiftPhaseB', function(req, res) {
+        User.find({}, function(err,users) {
+            console.log(users);
+            // res.render("calendar.ejs",{eventCallResults:events})
+            res.send(users);
+        })
+    });
+    
 
     app.get('/about', function(req, res) {
         let loged = req.cookies.signedIn;
@@ -389,6 +409,13 @@ module.exports = function(app) {
         res.cookie("currentUser", "");
         res.cookie("admin", false);
         res.cookie("signedIn", false);
+   })
+
+     /////////////////
+    ///sort events///
+   /////////////////
+   app.post("/calendarSort", async function(req,res) {
+    //sorts the list of events so they go from soonest to latest
    })
 
 }

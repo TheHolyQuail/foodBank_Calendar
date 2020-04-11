@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>shift assigner</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/standardStyles.css"/>
+    <!-- moment.js for preventing display of past events -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js"></script>
+    <!-- jquery.js for page population and ajax calls -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  </head>
+<body >
+    <div id="nav_bar">
+        <a href="/home" class="navButton" id="home">cancel</a>
+    </div>
+  
+    <div id="centerQuestionare">
+        <h1>Make things happen!</h1>
+        
+        <ul class="nav navbar-nav">
+            <!-- <li> <p class="error"><; %= error%; ></p></li> -->
+            <li>
+                <form action="/editAvalibility" method="POST">
+                    <input type="submit" class="submitButton" value="submit">
+                    <div id="eventList">
+                        <!-- This get's populated with the events and the people available to run them -->
+                    </div>
+                </form>
+            </li>
+            
+        </ul>
+    </div>
+    <script src="js/shift.js" type="module"></script>
+</body>
+</html>
+
+<!-- let newEventName = String(rawData[i].name);
+      let newEventStatus = String(rawData[i].statusColor);
+      
+      //The date
+      let newEventDate = String(rawData[i].time);
+      let newEventYear = newEventDate.slice(0, 4);
+      let newEventMonth = newEventDate.slice(5, 7);
+      let newEventDay = newEventDate.slice(8, 10);
+      let newEventTime = newEventDate.slice(11, 20); -->
