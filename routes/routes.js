@@ -415,21 +415,13 @@ module.exports = function(app) {
     ///assign shift///
    //////////////////
    app.post("/assignShift", async function(req,res) {
-        let username = String(req.body.userDisplay);
-        //console.log(username);
+        //let username = String(req.body.userDisplay);
+        // let username = req.body.$_POST['type'];
+        let username = String(req.body.userRaw);
+        console.log(username);
         //the variable containing the placement of the event in a sorted list of all events
-        let event = String(req.body.userDisplay.name);
-        //find the cutoff marker
-        let cutoff = 0;
-        for(let i = 0; i < event.length; i++){
-            if(event[i] == "@"){
-                cutoff = i;
-            }
-        }
-        //cut event down to just the number refering to it's placement in a sorted list of all events.
-        event = event.slice(cutoff + 1, event.length);
-        console.log("event: " + event);
-        username = username.slice(0, cutoff);
+        // let event = String(req.body.userDisplay.name);
+        let event = String(req.body.eventNum);
 
         Calen.find({}, function(err,eventList) {
             ////sort the events

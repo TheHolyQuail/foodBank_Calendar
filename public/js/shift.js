@@ -142,24 +142,35 @@ function parseDataB(rawData){
         //                  <input type="submit" class="submitButton" value="name">
         //              </form>
                     //create form with the submit button as the only internal element
-                    let form = document.createElement("form");
-                    form.action = "/assignShift";
-                    form.method = "POST";
-                    let input = document.createElement("input");
-                    input.value = users[ii].name;
-                    input.name = users[ii].name + "@" + i;
-                    input.type = "submit";
-                    input.class = "submitButton";//change to assignButton if possible
-                    let dat = document.createElement("input");
-                    dat.value = users[ii].name + "@" + i;
-                    dat.name = "userDisplay";
-                    dat.type = "text";
-                    dat.class = "fullHide";
-                    dat.setAttribute("hidden", true);
-                    
-                    form.appendChild(dat);
-                    form.appendChild(input);
-                    document.getElementById(i).appendChild(form);
+                    // let form = document.createElement("form");
+                    // form.action = "/assignShift";
+                    // form.method = "POST";
+                    // let input = document.createElement("input");
+                    // input.value = users[ii].name;
+                    // input.name = users[ii].name + "@" + i;
+                    // input.type = "submit";
+                    // input.class = "submitButton";//change to assignButton if possible
+                    // let dat = document.createElement("input");
+                    // dat.value = users[ii].name + "@" + i;
+                    // dat.name = "userDisplay";
+                    // dat.type = "text";
+                    // dat.class = "fullHide";
+                    // dat.setAttribute("hidden", true);
+                    let input = document.createElement("button");
+                    input.innerHTML = users[ii].name;
+                    $(input).click(function(){
+                        $.ajax({
+                            type: "POST",
+                            url: "/assignShift",
+                            data: {"userRaw": users[ii].name, "eventNum": i}, 
+                            success: function(result){
+                                console.log("posted");
+                            }
+                        });
+                    });
+                    //form.appendChild(input);
+                    //document.getElementById(i).appendChild(form);
+                    document.getElementById(i).appendChild(input);
                 }
             }
             
