@@ -79,6 +79,10 @@ module.exports = function(app) {
         res.render("editAvalibility.ejs", {error: ""});
     });
 
+    app.get('/editAccount', function(req, res){
+        res.render("editAccount.ejs");
+    });
+
     app.get('/newEvent', function(req, res) {
         res.render("newEvent.ejs", {error: ""});
     });
@@ -274,9 +278,6 @@ module.exports = function(app) {
         let day = String(req.body.day);
         let timeslot = String(req.body.time);
         let username = req.cookies.currentUser;
-
-        //convert day to three digits
-        day = day.slice(0, 3);
 
         //find user and add new availibility
         // let find = await ( User.findOne({ name:user }) )
