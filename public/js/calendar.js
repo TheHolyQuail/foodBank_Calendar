@@ -29,18 +29,22 @@ function getData() {
 }
 
 function parseData(rawData){
+  //console.log(rawData);
   let dates = [];
   //var calendar = new Calendar('#calendar', dates);
   if(currentRecordMonth != "" && currentRecordYear != ""){
+    console.log(currentRecordMonth);
+
     var data = [
       { eventName: 'Lunch Meeting w/ Mark', calendar: 'understaffed', color: 'yellow', dateE: 1},
       { eventName: 'Interview - Jr. Web Developer', calendar: 'staffed', color: 'green' ,dateE: 2},
       { eventName: 'Demo New App to the Board', calendar: 'understaffed', color: 'yellow' ,dateE: 3},
-      { eventName: 'Dinner w/ Marketing', calendar: 'staffed', color: 'green' ,dateE: 4},
+      { eventName: 'Dinner w/ Marketing', calendar: 'staffed', color: 'green' ,dateE: 4}
     ];
 
     for(let i = 0; i < rawData.length; i++){
       //name and color status
+      //console.log(rawData[i].time);
       let newEventName = String(rawData[i].name);
       let newEventStatus = String(rawData[i].statusColor);
       
@@ -49,11 +53,14 @@ function parseData(rawData){
       let newEventYear = newEventDate.slice(0, 4);
       let newEventMonth = newEventDate.slice(5, 7);
       let newEventDay = newEventDate.slice(8, 10);
-      let newEventTime = newEventDate.slice(11, 20);
+      let newEventTime = newEventDate.slice(11, newEventDate.length);
+
+      if(newEventMonth == "04"){
+        newEventMonth = "April";
+      }
       
       //check if the event is in the current active month of the calendar
       if(String(currentRecordMonth) == newEventMonth && String(currentRecordYear) == newEventYear){
-
         //color
         let newColor = "";
         let newSatus = "";
