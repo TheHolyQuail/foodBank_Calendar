@@ -272,7 +272,6 @@ module.exports = function(app) {
             let dayTime = day + "/" + timeslot;
             user.avaiability.push(dayTime);
             //console.log("user updated");
-            //(node:31912) UnhandledPromiseRejectionWarning: ReferenceError: user is not defined
             user.save(function(err,user){res.render('editAvalibility.ejs',{error: ""})})
             //console.log("finished");
         });
