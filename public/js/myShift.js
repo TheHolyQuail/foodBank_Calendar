@@ -1,45 +1,4 @@
-/* <table>
-    for(var i = 0; i<events.length;i++) {
-        <tr>
-            <td>Event: <%= events[i].name %></td>
-            <td>Date: <%= String(events[i].time).slice(0, 10); %></td>
-            <td>time: <%= String(events[i].time).slice(11, 20) %></td>
-            <td>Available volunteers: </td>
-        </tr>
-    }                       
-</table>   */
 var username;
-
-//sorts the events and puts them on the page
-// function getDataA() { 
-//     //username = req.cookies.currentUser;
-//     //console.log(username);
-//     $.ajax({
-//         url: "http://localhost:3333/getUser",
-//         success: function(data){
-//             console.log(data);
-//             getEvents(data);
-//         },
-//         error: function(response) {
-//           console.log("error occured in ajax");
-//           console.log(response);
-//         }
-//     });
-// }
-
-// function getEvents(username){
-//     $.ajax({
-//         url: "http://localhost:3333/getUserEvents",
-//         data: {"username": username},
-//         success: function(data){
-//             parseDataA(data);
-//         },
-//         error: function(response) {
-//           console.log("error occured in ajax");
-//           console.log(response);
-//         }
-//     });
-// }
 
 //sorts the events and puts them on the page
 function getDataA() { 

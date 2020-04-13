@@ -8,6 +8,7 @@
         </tr>
     }                       
 </table>   */
+
 var fullEventCount;
 
 //sorts the events and puts them on the page
@@ -131,31 +132,13 @@ function parseDataB(rawData){
         let day = date.slice(0,4) + date.slice(5,7) + date.slice(8,10);
         //the timeframe of the event 00:00AM/00:00PM
         let hours = date.slice(11,date.length);
-        console.log(date);
+        //console.log(date);
         //iterates through every user and add available ones to the list for that event
         for(let ii = 0; ii < users.length; ii++){
             for(let iii = 0; iii < users[ii].avaiability.length; iii++){
                 console.log(date.slice(0,10));
                 if(date.slice(0,10) == users[ii].avaiability[iii].slice(0,10)){
-                    console.log(i);
-        //             <form action="/assignShift" method="POST">
-        //                  <input type="submit" class="submitButton" value="name">
-        //              </form>
-                    //create form with the submit button as the only internal element
-                    // let form = document.createElement("form");
-                    // form.action = "/assignShift";
-                    // form.method = "POST";
-                    // let input = document.createElement("input");
-                    // input.value = users[ii].name;
-                    // input.name = users[ii].name + "@" + i;
-                    // input.type = "submit";
-                    // input.class = "submitButton";//change to assignButton if possible
-                    // let dat = document.createElement("input");
-                    // dat.value = users[ii].name + "@" + i;
-                    // dat.name = "userDisplay";
-                    // dat.type = "text";
-                    // dat.class = "fullHide";
-                    // dat.setAttribute("hidden", true);
+                    //console.log(i);
                     let input = document.createElement("button");
                     input.innerHTML = users[ii].name;
                     $(input).click(function(){

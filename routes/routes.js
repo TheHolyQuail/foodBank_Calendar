@@ -32,7 +32,7 @@ module.exports = function(app) {
     app.get('/calendarData', function(req, res) {
         Calen.find({}, function(err,events) {
             //console.log(events);
-            // res.render("calendar.ejs",{eventCallResults:events})
+            //res.render("calendar.ejs",{eventCallResults:events})
             res.send(events);
         })
     });
@@ -116,20 +116,6 @@ module.exports = function(app) {
             res.send(foundUser.scheduled);
         })
     });
-
-    // app.get('/getUser', function(req, res) {
-    //     let username = req.cookies.currentUser;
-    //     //console.log(username);
-    //     res.send(username);
-    // });
-
-    // app.get('/getUserEvents', function(req, res) {
-    //     let user = String(req.body.username);
-    //     User.findOne({ name:user }, function(err,foundUser){
-    //         console.log(foundUser);
-    //         res.send(foundUser.scheduled);
-    //     })
-    // });
 
     app.get('/editAccount', function(req, res) {
         //declare variables
